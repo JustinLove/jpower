@@ -7,7 +7,7 @@ describe JSParser do
     @parser = JSParser.new
   end
 
-  describe 'should be parseable with no statements'
+  describe 'should be parseable with no statements' do
     after(:each) do
        @result.should have(0).statements
     end
@@ -24,6 +24,7 @@ describe JSParser do
       parse('
           ')
     end
+  end
 
   it "single line comment" do
     parse('// this is a comment')
