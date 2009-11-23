@@ -2,7 +2,7 @@
 
 grammar JS
   rule program
-     (spacing statement spacing)*
+     (spacing statement spacing)+ / spacing
   end
 
   rule statement
