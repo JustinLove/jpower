@@ -8,7 +8,7 @@ grammar JS
   rule statement
     block / function / if_else / for_in / for / ternary / let / [^;\{\}]+ ';' {
         def statements
-            [ @interval ] << super
+            [ interval ] << super
         end
     }
   end
@@ -32,8 +32,8 @@ grammar JS
   rule let
     lhs:(lhs)? spacing rhs:expression spacing ';' {
         def statements
-            interval = rhs.statements.length > 0 ? lhs.interval : @interval
-            [ interval ] << super
+            int = rhs.statements.length > 0 ? lhs.interval : interval
+            [ int ] << super
         end
     }
   end
