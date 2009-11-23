@@ -15,7 +15,7 @@ module SpecParser
   def parse(string)
     @result = @parser.parse(string)
     if @result.nil?
-      nil.should equal(@parser.failure_reason)
+      nil.should == @parser.failure_reason
     end
     @result
   end
