@@ -67,7 +67,7 @@ grammar JS
   end
   
   rule function_args
-    '(' spacing (expression (spacing ',' spacing expression)*)? spacing ')'
+    '(' (spacing expression (spacing ',' spacing expression)*)? spacing ')'
   end
   
   rule for
