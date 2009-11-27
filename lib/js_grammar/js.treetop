@@ -51,7 +51,11 @@ grammar JS
   end
 
   rule basic_expression
-    function / function_call / '(' spacing expression spacing ')' / hash / bool / string / number / symbol
+    function / function_call / '(' spacing expression spacing ')' / return / hash / bool / string / number / symbol
+  end
+
+  rule return
+    'return' spacing expression
   end
 
   rule deref
