@@ -79,7 +79,7 @@ grammar JS
   end
   
   rule for_in
-    initial_statement:('for' spacing '(' spacing declaration spacing 'in' spacing expression spacing ')') spacing spacing (block / statement) {
+    initial_statement:('for' spacing '(' spacing declaration spacing 'in' spacing expression spacing ')') spacing (block / statement) {
       def statements
         [ initial_statement.interval ] << super
       end
