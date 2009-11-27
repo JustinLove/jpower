@@ -47,7 +47,7 @@ grammar JS
   end
   
   rule expression
-    basic_expression (deref)*
+    basic_expression (deref / (spacing binary_operator spacing expression))*
   end
 
   rule basic_expression
@@ -56,6 +56,10 @@ grammar JS
 
   rule deref
     ('.' spacing symbol / '[' spacing expression spacing ']')
+  end
+
+  rule binary_operator
+    [!=>+\-/*]+
   end
 
   rule function_call
