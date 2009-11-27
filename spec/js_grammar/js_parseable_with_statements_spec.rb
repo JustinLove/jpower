@@ -3,6 +3,16 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe "JSParser should parse" do
   include SpecParser
 
+  # class Treetop::Runtime::SyntaxNode
+  #   def initialize(input, interval, elements = nil)
+  #     @input = input
+  #     @interval = interval
+  #     @elements = elements
+  #     puts '---------------------------'
+  #     puts inspect
+  #   end
+  # end
+
   before :all do
     @parser = JSParser.new
   end
