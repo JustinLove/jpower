@@ -99,7 +99,11 @@ grammar JS
   end
 
   rule hash_entry
-    label:symbol spacing ':' spacing expression  
+    label:hash_key spacing ':' spacing expression  
+  end
+
+  rule hash_key
+    symbol / string
   end
 
   rule function_params
