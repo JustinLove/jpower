@@ -6,11 +6,7 @@ grammar JS
   end
 
   rule statement
-    block / function / if_else / for_in / for / ternary / let / [^;{}]+ ';' {
-        def statements
-            [ interval ] << super
-        end
-    }
+    block / function / if_else / for_in / for / ternary / let
   end
 
   rule function
