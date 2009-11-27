@@ -95,7 +95,9 @@ grammar JS
   end
     
   rule hash
-    '{' (spacing hash_entry spacing ','? spacing)* '}'
+    ('{' spacing '}')
+    /
+    ('{' spacing (hash_entry spacing ',' spacing)* hash_entry spacing '}')
   end
 
   rule hash_entry
