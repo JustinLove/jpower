@@ -12,9 +12,9 @@ grammar JS
         end
     }
   end
-  
+
   rule function
-    'function' spacing name:[^ (]* spacing '(' function_params ')' spacing block
+    'function' spacing name:symbol? spacing '(' function_params ')' spacing block
   end
 
   rule block
@@ -47,7 +47,7 @@ grammar JS
   end
   
   rule expression
-    '(' spacing expression spacing ')' / function / hash / bool / string / number / function_call / [^,)}]+
+    '(' spacing expression spacing ')' / function / hash / bool / string / number / function_call / symbol
   end
 
   rule function_call
@@ -59,11 +59,11 @@ grammar JS
   end
   
   rule named_function_call
-    function_name spacing function_args
+    symbol spacing function_args
   end
   
-  rule function_name
-    [^(]+
+  rule symbol
+    [a-zA-Z_$] [\w$]*
   end
   
   rule function_args
@@ -91,7 +91,7 @@ grammar JS
   end
   
   rule declaration
-    'var'? spacing [^ ]+
+    'var'? spacing symbol
   end
     
   rule hash
@@ -99,7 +99,7 @@ grammar JS
   end
 
   rule hash_entry
-    label:[^ :]+ spacing ':' spacing expression  
+    label:symbol spacing ':' spacing expression  
   end
 
   rule function_params
