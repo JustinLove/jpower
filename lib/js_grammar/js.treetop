@@ -66,18 +66,14 @@ grammar JS
     [!=>+\-/*]+
   end
 
+  rule function_expression
+    ('(' spacing expression spacing ')' / symbol) deref*
+  end
+
   rule function_call
-    named_function_call / anonymous_function_call
+    function_expression spacing function_args
   end
-  
-  rule anonymous_function_call
-    '(' spacing function spacing ')' spacing function_args
-  end
-  
-  rule named_function_call
-    symbol spacing function_args
-  end
-  
+
   rule symbol
     [a-zA-Z_$] [\w$]*
   end
