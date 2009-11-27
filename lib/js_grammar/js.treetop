@@ -6,7 +6,7 @@ grammar JS
   end
 
   rule statement
-    block / function / if_else / for_in / for / ternary / let / [^;\{\}]+ ';' {
+    block / function / if_else / for_in / for / ternary / let / [^;{}]+ ';' {
         def statements
             [ interval ] << super
         end
@@ -14,7 +14,7 @@ grammar JS
   end
   
   rule function
-    'function' spacing name:[^ \(]* spacing '(' function_params ')' spacing block
+    'function' spacing name:[^ (]* spacing '(' function_params ')' spacing block
   end
 
   rule block
@@ -22,7 +22,7 @@ grammar JS
   end
 
   rule if_else
-    if_part:('if' spacing '(' [^\)]+ ')') spacing (block / statement) (spacing 'else' spacing (block / statement))?  {
+    if_part:('if' spacing '(' [^)]+ ')') spacing (block / statement) (spacing 'else' spacing (block / statement))?  {
         def statements
           [ if_part.interval ] << super
         end
@@ -47,7 +47,7 @@ grammar JS
   end
   
   rule expression
-    '(' spacing expression spacing ')' / function / hash / bool / string / number / function_call / [^,\)\}]+
+    '(' spacing expression spacing ')' / function / hash / bool / string / number / function_call / [^,)}]+
   end
 
   rule function_call
@@ -63,7 +63,7 @@ grammar JS
   end
   
   rule function_name
-    [^\(]+
+    [^(]+
   end
   
   rule function_args
@@ -71,7 +71,7 @@ grammar JS
   end
   
   rule for
-    'for' spacing '(' spacing initial_expression:([^;\{\}]+ ';') spacing condition:([^;\{\}]+ ';') spacing final_expression:([^;\{\}\)]+) ')' spacing (block / statement) {
+    'for' spacing '(' spacing initial_expression:([^;{}]+ ';') spacing condition:([^;{}]+ ';') spacing final_expression:([^;{})]+) ')' spacing (block / statement) {
       def statements
         [ initial_expression.interval, condition.interval, final_expression.interval ] << super
       end
@@ -99,11 +99,11 @@ grammar JS
   end
 
   rule hash_entry
-    label:[^ \:]+ spacing ':' spacing expression  
+    label:[^ :]+ spacing ':' spacing expression  
   end
 
   rule function_params
-    [^\(\)]*
+    [^()]*
   end
   
   rule string
@@ -123,7 +123,7 @@ grammar JS
   end
 
   rule single_quoted_string
-    "'" (!"'" . / "\'")* "'"
+    "'" (!"'" . / "\\\'")* "'"
   end
 
   rule spacing
