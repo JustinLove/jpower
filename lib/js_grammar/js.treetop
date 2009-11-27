@@ -47,7 +47,7 @@ grammar JS
   end
   
   rule expression
-    '(' spacing expression spacing ')' / function / hash / bool / string / number / function_call / symbol
+    function / function_call / '(' spacing expression spacing ')' / hash / bool / string / number / symbol
   end
 
   rule function_call
