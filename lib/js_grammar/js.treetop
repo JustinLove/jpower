@@ -47,7 +47,15 @@ grammar JS
   end
   
   rule expression
+    basic_expression (deref)*
+  end
+
+  rule basic_expression
     function / function_call / '(' spacing expression spacing ')' / hash / bool / string / number / symbol
+  end
+
+  rule deref
+    ('.' spacing symbol / '[' spacing expression spacing ']')
   end
 
   rule function_call
